@@ -1,0 +1,197 @@
+Zadania dodatkowe
+1.
+a)
+ls -l | grep "^-" | wc -l > NOTATKA && who >> NOTATKA && pwd >> NOTATKA
+
+b)
+tree ~ > Katalog && cat NOTATKA Katalog > wynik
+
+c)
+wc -l < NOTATKA >> wynik
+
+2.
+a) 
+find / -maxdepth 3 -type f
+
+b)
+find /dev -type b | wc -l
+
+c)
+find . -type d -perm /g=r
+
+d)
+find . -type f \( -name "[d-k]*" -o -name "p*" -o -name "t*" \) -regex '.\{5,\}'
+
+e)
+find / -maxdepth 2 -type l | wc -l
+f)
+find ~ -type f -mtime -3
+
+3.
+a)
+grep "s$" /usr/share/dict/words > Strange_Dictionary.txt
+
+b)
+grep -v "[a-zA-Z]" /usr/share/dict/words >> Strange_Dictionary.txt
+
+c)
+grep -E '^..j..r$' /usr/share/dict/words >> Strange_Dictionary.txt
+
+d)
+grep -c "^z\{7,\}" /usr/share/dict/words >> Strange_Dictionary.txt
+
+4.
+a)
+% ls -l | grep -E "^[k-pTw]" | wc -l
+find ./ -type f \( -name "^[k-p]" -o -name "^t" -o -name "^w" \)| wc -l
+
+
+b)
+cat ~/[k-pw]* | wc -m
+
+c)
+find / -mindepth 2 -maxdepth 3 -type d -printf "%f\n" | wc -l
+
+
+C2_5
+zad 1
+a)
+s169405@orfi:~$ echo $HOME
+/home/domena/s169405       Wyświetla ścieżkę do katalogu domowego użytkownika.
+b)
+s169405@orfi:~$  echo $_   Wyświetla ostatni argument ostatniego wykonanego polecenia.
+/home/domena/s169405
+
+zad 2
+nano tekst21_03.txt
+cat tekst21_03.txt
+
+kawa i herbata ala
+aallaan ***
+ela, jola, tola i allibaba
+kot \i pies\ ali
+ala 4-2=2
+alla: 4*5=20
+allo alo, tola i ala
+pies aalli alli
+aalllaa tollla
+ alla 4+3=7 ala
+ ola i ala
+ ala
+
+
+zad 3
+a)
+grep '^ala' *
+grep: public_html: Jest katalogiem
+tekst21_03.txt:ala 4-2=2
+b)
+grep 'tola i ala$' *
+grep: public_html: Jest katalogiem
+tekst21_03.txt:allo alo, tola i ala
+c)
+grep 'a*l*a' *
+grep: public_html: Jest katalogiem
+tekst21_03.txt:kawa i herbata ala
+tekst21_03.txt:ala 4-2=2
+tekst21_03.txt:allo alo, tola i ala
+tekst21_03.txt: alla 4+3=7 ala
+tekst21_03.txt: ola i ala
+tekst21_03.txt: ala
+d)
+grep '.l. \| .ll. \| .lll.' *
+grep: public_html: Jest katalogiem
+tekst21_03.txt:ela, jola, tola i allibaba
+tekst21_03.txt:ala 4-2=2
+tekst21_03.txt:allo alo, tola i ala
+tekst21_03.txt:pies aalli alli
+tekst21_03.txt: alla 4+3=7 ala
+tekst21_03.txt: ola i ala
+e)
+grep -c '^\s*\(alla\|ala\)' *
+tekst21_03.txt:4
+f)
+grep 'o,' *
+grep: public_html: Jest katalogiem
+tekst21_03.txt:allo alo, tola i ala
+g)
+s169405@orfi:~$ grep '\\' *
+grep: public_html: Jest katalogiem
+tekst21_03.txt:kot \i pies\ ali
+h)
+grep '4' * && grep -v '4\*' * ????????????
+
+
+kolok polecnia:
+cd
+pwd
+ls
+tree
+ls -l
+ls -la
+~
+cd 
+cd ..
+mkdir
+man mkdir
+mkdir -m 777 folder1 (stwiea i podaje uprawnienia dla nowego folderu)
+touch
+nano
+echo "text" >> plik.txt
+cat plik.txt
+less plik.txt
+rm plik.txt
+rm -v plik.txt (wypisuje informacje)
+rm -v plik.txt 2>> log
+rmdir folder1 (pusty)
+rm -r folder1 (ze wszystkim)
+>> dopisuje
+> nadpisuje
+| przekazuje wynik poprzedniego polecenia do następnego
+ls | wc -l
+cat  a1 >> a2
+cp a1 a4  (cp co kopijujemy, jak nazywa kopija)
+cp a1 ~/a4 (do folderu domowego)
+cp a1 ~\
+mv (przenosić)
+mv a1 folder
+mv a2 log (zmienia nazwe)
+mv a4 as/b4 (przenosi a4 do folderu as jako b4)
+chmod nazwaPliku 777 (zmienicz uprawnienia)
+ls -l nazwaPleku (zobaczyć uprawnienia)
+chmod nazwaPliku 774
+chmod -R nazwaPliku (zmienicz dla wszystich plików)
+ln -s ~ dom (dowiąnzanie symboliczne)
+ln -s ~ ~/folder1/dom2
+find szuka pliki 
+grep szuka zawartosc plików tektowych
+find -type f -name "n*" -amin -40 (prosty plik ktory był dostęp mniej od 40 minut temu i zaczyna od n) 
+mmin - modified
+amin - dostęp
+cmin -create
+find -perm 777
+permisions
+grep zip *.txt
+grep '^zip' *.txt zip na początku
+grep 'zip$' *.txt zip na końcu
+grep -h '^zip' *.txt nie wyświetlacz te pliki
+grep -h '^zip' *.txt | less
+grep -h '[0-9]$' *.txt >> plik.txt
+grep -h '[0-9]$' *.txt >> wc -l (ile linii)
+grep -h '[0-9]$' *.txt >> wc -w (ile słuw)
+grep -h '[^0-9]$' *.txt zaprzeca żeby było 0-9 na końcu
+a=6 (zmienna)
+echo $a (wyświetla zmienna)
+echo $4
+echo %b
+4
+
+c=$[$a+4b]
+echo $c
+
+2 -eq 2 =
+5 -ne 2 !=
+2 -lt 3 <
+3 -gt 2 >
+2 -le 3 <=
+3 -ge 2 >=
