@@ -1,0 +1,66 @@
+/*
+Punkt 1
+ls -l /usr/bin
+ ls -l /usr/bin > ls-output.txt
+ls
+ls-output.txt  public_html
+cat ls-output.txt
+ls -l ls-output.txt
+-rw-r--r-- 1 s169405 domain users 53732 03-14 12:49 ls-output.txt
+less ls-output.txt
+ls -l /bin/usr 2> ls-error.txt
+cat ls-error.txt
+ls: nie ma dostępu do '/bin/usr': Nie ma takiego pliku ani katalogu
+ls -l /usr/bin >> ls-output.txt
+ls -l /usr/bin >> ls-output.txt
+ls -l ls-output.txt
+-rw-r--r-- 1 s169405 domain users 107464 03-14 12:57 ls-output.txt
+Punkt2
+ls -l /usr/bin | less
+ls -l /usr/bin | wc -l
+895
+find ~
+find ~ | wc -l
+8
+find ~ -type d | wc -l
+2
+s169405@orfi:~$ find ~ -type f | wc -l
+6
+find ~ -type -name "*.txt" -size +1M -maxdepth 2 -cmin
+*/
+
+Zad 1
+a)
+echo "Wiatr" > dane22
+ls -l >> dane22
+pwd >> dane22
+b)
+tree ~/ > drzewo
+cat dane22 drzewo > wynik
+c)
+cat dane22 drzewo wynik > razem
+d)
+who | wc -l
+e)
+find ~/ -type f | wc -l  
+find ~/ -mindepth 1 -type d | wc -l  
+Zad 2
+a) 
+find ~/ -maxdepth 1 -type f -empty
+b)
+find /dev -type c | wc -l
+c)
+find ~/ -mindepth 1 -maxdepth 1 -type d -perm /500
+d)
+find ./ -maxdepth 1 -type f -name '[a-fw]*' -exec cat {} \;
+e)
+find ~/ -mindepth 1 -maxdepth 3 -type f -not -empty -mmin -30
+f)
+find ./ -type f \( -amin -30 -o -mmin -30 -o -cmin -30 \)
+Zad 3
+a)
+find /dev -type b | wc -l
+b)
+find . -maxdepth 1 -type f \( -name "a*" -o -name "[c-e]*" -o -name "w*" \) | xargs wc -l
+c)
+find ~/ -mindepth 2 -maxdepth 3 -type d | wc -l
