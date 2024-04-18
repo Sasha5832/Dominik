@@ -1,0 +1,50 @@
+# 1. 
+mkdir -p ~/Notatki ~/Przepisy ~/Dane/Kopie
+nano ~/Notatki/Zapiski.txt
+
+# 2. Utwórz dowiązanie symboliczne o nazwie AdZapisek w podkatalogu Przepisy do pliku Zapiski.txt.
+ln -s ~/Notatki/Zapiski.txt ~/Przepisy/AdZapisek
+
+# 3. Zmień prawa dostępu:
+# - do katalogu Notatki - na - właściciel: rwx, grupa i reszta: r;
+# - do katalogu Kopie na: właściciel: rwx, grupa: rw-, reszta: r--;
+# - do pliku Zapiski.txt (w katalogu Notatki) na: właściciel - wszystko, grupa - odczyt, reszta - wykonaj.
+chmod 744 ~/Notatki
+chmod 762 ~/Notatki/Kopie
+chmod 741 ~/Notatki/Zapiski.txt
+
+# 4. Utwórz plik Plik_testowy.txt w podkatalogu Dane. Sprawdź, na co pozwalają konkretne prawa dostępu ustanowione dla pliku r,w,x tzn. jakie operacje w stosunku niego są możliwe: odczyt informacji o pliku (ls), odczyt zawartości pliku (cat), zmiana praw dostępu, kopiowanie, usuwanie, przenoszenie (zmiana nazwy), modyfikacja zawartości (edycja), uruchamianie pliki specjalne.
+
+touch ~Dane/Plik_testowy.txt
+# Odczyt informacji o pliku (ls)
+ls -l ~/Dane/Plik_testowy.txt
+# Odczyt zawartości pliku (cat)
+cat ~/Dane/Plik_testowy.txt
+# Zmiana praw dostępu
+chmod 777 ~/Dane/Plik_testowy.txt
+# Kopiowanie, usuwanie, przenoszenie, modyfikacja zawartości - możliwe w zależności od ustawionych praw dostępu
+
+# 5. Sprawdź, wykorzystując podkatalog Dane, na co pozwalają konkretne prawa dostępu ustanowione dla katalogu tzn. na jakie operacje w stosunku do: samego katalogu (nazwy, parametrów) oraz jego zawartości one pozwalają.
+# Operacje katalogu: usunięcie, zmiana nazwy, zmiana praw dostępu, odczyt danych o katalogu.
+# Operacje na zawartości katalogu: odczyt, utworzenie podkatalogu, skopiowanie pliku do katalogu, usunięcie pliku z katalogu, skopiowanie pliku z katalogu.
+
+# 6. Zmienić maskę na 0027.
+umask 0027
+
+# 7. Utworzyć plik plik1.txt i katalog Proba1 w katalogu Dane. Sprawdzić – jakie prawa dostępu zostały nadane.
+touch ~/Dane/plik1.txt
+mkdir ~/Dane/Proba1
+ls -ld ~/Dane/plik1.txt ~/Dane/Proba1
+
+# 8. Wyjaśnij co to jest i-węzeł?
+# I-węzeł (lub inode) jest strukturą danych w systemach plików, która przechowuje metadane pliku, takie jak jego nazwa, typ, rozmiar, uprawnienia dostępu, daty modyfikacji itp. Każdy plik w systemie plików ma przypisany do siebie i-węzeł, który identyfikuje ten plik w systemie. I-węzły są istotne dla zarządzania systemem plików, ponieważ przechowują informacje o każdym pliku i katalogu.
+
+# 9. Ustal numery i-węzłów zasobów katalogu Notatki.
+ls -i ~/Notatki
+
+# 10. Jeżeli roboczym katalogiem jest katalog nadrzędny do katalogu Dane, to jakie operacje musi wykonać System operacyjny, aby odczytać zawartość pliku dane1.
+# Jeśli system operacyjny ma dostęp do katalogu nadrzędnego, musi wykonać następujące operacje, aby odczytać zawartość pliku dane1:
+# - Otworzyć katalog nadrzędny.
+# - Zlokalizować i otworzyć katalog Notatki.
+# - Zlokalizować i otworzyć katalog Dane.
+# - Zlokalizować i odczytać zawartość pliku dane1.
